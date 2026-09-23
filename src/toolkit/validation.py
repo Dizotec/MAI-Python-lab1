@@ -9,7 +9,7 @@ def valid(args):
         sys.exit(2)
     exp = args[1]
     exp = exp.replace(' ','')
-    permitted = ['*','/','-','+'] 
+    permitted = ['*','/','-','+','.'] 
     # проверка на двойные операнды 
     prev = None 
     for i in exp:
@@ -35,7 +35,7 @@ def valid(args):
     permitted.append('(')
     for i in exp:
         if i not in permitted:
-            print(i)
+            
             errors.invalid_symbol()
     # проверка на деление на ноль 
     combs_with_div_by_zero = [str(i) +'/0' for i in range(1,10)]
@@ -43,8 +43,8 @@ def valid(args):
         if i in exp:
             errors.division_by_zero()
     
-    print(exp)
     if args[0] == 'calc':
-        tokenization.get_tokens(args)
+       
+        tokenization.get_tokens(exp)
     if args[0] == 'convert':
         converter.convert(args)

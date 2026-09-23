@@ -6,7 +6,6 @@ from toolkit import validation
 def main():
     
     args = sys.argv[1:]  
-    print(f"Переданные аргументы: {args}")
     validation.valid(args)
 
 if __name__ == "__main__":

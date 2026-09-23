@@ -1,6 +1,7 @@
-def get_tokens(args):
+from toolkit import converter_to_PPN
+def get_tokens(exp):
     
-    exp = args[1]
+    
     tokens = [] 
     i = 0 
     while i < len(exp):
@@ -13,4 +14,5 @@ def get_tokens(args):
                 number += exp[i]
                 i += 1
             tokens.append(number)
-    print(tokens)
+    
+    converter_to_PPN.convert_to_RPN(tokens)
