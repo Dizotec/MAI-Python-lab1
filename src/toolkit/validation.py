@@ -8,17 +8,19 @@ def valid(args):
         errors.empty_exp()
         sys.exit(2)
     exp = args[1]
-    exp = exp.replace(' ','')
+
     permitted = ['*','/','-','+','.'] 
-    # проверка на двойные операнды 
+    # проверка на двойные операнды тут опасненько надо доделать
+    clean_exp = exp.replace(' ','')
     prev = None 
-    for i in exp:
+    for i in clean_exp:
         if i in permitted:
-            if prev in permitted:
+            if prev in permitted and prev in './*'  and i in './*' or( prev + i =='+*')or( prev + i =='-*'):
                 
                 errors.double_operands()
         prev = i
     # проверка на пропущенный операнд 
+    
     open_bracket_error = ['(' + i for i in permitted] 
     del open_bracket_error[2]
     bracket_error =  open_bracket_error + [ i + ')' for i in permitted] 
@@ -33,9 +35,10 @@ def valid(args):
     # проверка на неподходящие символы 
     permitted.append(')')
     permitted.append('(')
+    permitted.append(' ')
     for i in exp:
         if i not in permitted:
-            
+            print(i)
             errors.invalid_symbol()
     # проверка на деление на ноль 
     combs_with_div_by_zero = [str(i) +'/0' for i in range(1,10)]

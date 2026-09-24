@@ -8,16 +8,19 @@ def isfloat(token):
         return False
     
 def convert_to_RPN(tokens):
+    
     converted = []
-   
     stack = deque()
-    priorities = {'(': 0, '+': 1, '-': 1, '*': 2, '/': 2}
+    priorities = {'(': 0, '+': 1, '-': 1, '*': 2, '/': 2,'~':3}
     for i in tokens:
+    
+        if i == ' ':
+            continue 
         if i.isdigit() or isfloat(i):
             converted.append(i)
         elif i == '(':
             stack.append(i)
-        elif i in "+-/*":
+        elif i in "+-/*~":
             while stack and stack[-1] != '(' and priorities[stack[-1]] >= priorities[i]:
                 converted.append(stack.pop())
             stack.append(i)
@@ -28,5 +31,6 @@ def convert_to_RPN(tokens):
             stack.pop()
     while stack:
         converted.append(stack.pop())
+    print(converted)
     calculator.calc(converted)
 

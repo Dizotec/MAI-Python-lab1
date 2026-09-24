@@ -1,23 +1,29 @@
 from collections import deque 
-import sys
+from toolkit import errors
 from toolkit import converter_to_PPN
 
 def calc(converted):
     stack = deque() 
+    
     for i in converted:
-        if i.isdigit() or converter_to_PPN.isfloat(i):
+        if i =='~':
+            arg = float(stack.pop())
+            stack.append(str(-arg))
+        elif i.isdigit() or converter_to_PPN.isfloat(i):
             stack.append(i)
-        if i in '+-/*':
+        elif i in '+-/*':
             f_arg = float(stack.pop())
             s_arg = float(stack.pop())
             if i == '+':
-                stack.append((f_arg+s_arg))
+                stack.append(str(s_arg+f_arg))
             elif i == '*':
-                stack.append(str(f_arg*s_arg))
+                stack.append(str(s_arg*f_arg))
             elif i == '/':
-                stack.append(str(f_arg/s_arg))
+                if f_arg == 0:
+                    errors.division_by_zero()
+                stack.append(str(s_arg/f_arg))
             elif i == '-':
-                stack.append(str(f_arg-s_arg))
+                stack.append(str(s_arg-f_arg))
     print(stack[0])
 
     
