@@ -24,6 +24,6 @@ def calc(converted):
                 stack.append(str(s_arg/f_arg))
             elif i == '-':
                 stack.append(str(s_arg-f_arg))
-    print(stack[0])
+    print(stack[0]) #aaa
 
     
