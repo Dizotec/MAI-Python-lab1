@@ -4,6 +4,7 @@ from toolkit import calculator
 from toolkit import tokenization
 import sys
 def valid(args):
+    exp_args = args[1]
     if len(args) == 1:
         errors.empty_exp()
         sys.exit(2)
@@ -12,7 +13,7 @@ def valid(args):
     permitted = ['*','/','-','+','.'] 
     # проверка на двойные операнды тут опасненько надо доделать
     clean_exp = exp.replace(' ','')
-    prev = None 
+    prev = '+'
     for i in clean_exp:
         if i in permitted:
             if prev in permitted and prev in './*'  and i in './*' or( prev + i =='+*')or( prev + i =='-*'):
@@ -28,7 +29,7 @@ def valid(args):
     for i in bracket_error:
         if i in exp:
             bracket_error_flag = True 
-    if (exp[0] == '+' or exp[0] == '/' or exp[0] == '*' ) or (exp[-1] in permitted) or bracket_error_flag:
+    if ( exp[0] == '/' or exp[0] == '*' ) or (exp[-1] in permitted) or bracket_error_flag:
         errors.missed_operand()
     for i in range(10):
         permitted.append(str(i))
@@ -46,8 +47,6 @@ def valid(args):
         if i in exp:
             errors.division_by_zero()
     
-    if args[0] == 'calc':
-       
-        tokenization.get_tokens(exp)
-    if args[0] == 'convert':
-        converter.convert(args)
+    
+    
+    tokenization.get_tokens(exp)

@@ -1,10 +1,14 @@
 from collections import deque 
-from toolkit import errors
-from toolkit import converter_to_PPN
 
+from toolkit import errors
+from toolkit import validation
+    
+from toolkit import expression
+from toolkit import converter_to_PPN
+from decimal import Decimal,  ROUND_HALF_UP
+import json 
 def calc(converted):
     stack = deque() 
-    
     for i in converted:
         if i =='~':
             arg = float(stack.pop())
@@ -15,6 +19,7 @@ def calc(converted):
             f_arg = float(stack.pop())
             s_arg = float(stack.pop())
             if i == '+':
+                
                 stack.append(str(s_arg+f_arg))
             elif i == '*':
                 stack.append(str(s_arg*f_arg))
@@ -24,6 +29,13 @@ def calc(converted):
                 stack.append(str(s_arg/f_arg))
             elif i == '-':
                 stack.append(str(s_arg-f_arg))
-    print(stack[0]) #aaa
+    value = Decimal(stack[0])
+    result = str(value.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)) # rounding to 2 decimal places
+    expression_plus_result = expression.args +  '=' + result
+    print(expression_plus_result)
+    with open('results.json','a',encoding='utf-8') as file:
+        json.dump(expression_plus_result,file)
+        file.write('\n')
+   
 
     
