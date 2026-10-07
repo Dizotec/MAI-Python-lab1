@@ -4,20 +4,20 @@ from toolkit import calculator
 from toolkit import tokenization
 import sys
 def valid(args):
-    exp_args = args[1]
     if len(args) == 1:
-        errors.empty_exp()
-        sys.exit(2)
+            errors.empty_exp()
+            sys.exit(2)
+    exp_args = args[1]
+    
     exp = args[1]
 
     permitted = ['*','/','-','+','.'] 
-    # проверка на двойные операнды тут опасненько надо доделать
-    clean_exp = exp.replace(' ','')
+    clean_exp = exp.replace(' ', '')
     prev = '+'
     for i in clean_exp:
-        if i in permitted:
-            if prev in permitted and prev in './*'  and i in './*' or( prev + i =='+*')or( prev + i =='-*'):
-                
+        if i in permitted and prev in permitted:
+            # допустимо только если второй оператор — унарный '+' или '-'
+            if not (i in ('+','-') and prev in ('*','/','+','-')):
                 errors.double_operands()
         prev = i
     # проверка на пропущенный операнд 
@@ -31,6 +31,7 @@ def valid(args):
             bracket_error_flag = True 
     if ( exp[0] == '/' or exp[0] == '*' ) or (exp[-1] in permitted) or bracket_error_flag:
         errors.missed_operand()
+        
     for i in range(10):
         permitted.append(str(i))
     # проверка на неподходящие символы 

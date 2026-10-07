@@ -7,7 +7,8 @@ from toolkit import expression
 def main():
     
     args = sys.argv[1:]  
-    expression.args = args[1]
+    if len(args)>=2:
+        expression.args = args[1]
     if args[0] == 'calc':
         validation.valid(args)
     

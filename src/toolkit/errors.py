@@ -14,6 +14,9 @@ def division_by_zero():
 def missed_operand():
         print('Missing Operand')
         sys.exit(2)
+def undefiend_group():
+        print("Unknown Unit")
+        sys.exit(2)
 def conversion_of_different_groups():
         print('Conversion of Different Groups')
         sys.exit(2)

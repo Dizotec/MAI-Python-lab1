@@ -4,9 +4,13 @@ def convert(exp):
     value = float(exp[1])
     unit_one = (exp[3]).lower()
     unit_two = (exp[5]).lower()
+    
     dist_units = ["mm",'cm','m','km']
     weight_units =[ "kg",'g']
     temperature_units = ['k','f','c']
+    if ((unit_one not in dist_units ) and (unit_one not in weight_units ) and (unit_one not in temperature_units)) or ((unit_two not in dist_units ) and (unit_two not in weight_units )and (unit_two not in temperature_units) ):
+        errors.undefiend_group()
+    
     
     if (unit_two in dist_units and unit_one in dist_units) or (unit_two in weight_units and unit_one in weight_units) or (unit_two in temperature_units and unit_one in temperature_units):
         pass
@@ -25,7 +29,7 @@ def convert(exp):
     }
     if unit_one not in temperature_units and unit_two not in temperature_units:
 
-        print((float(uni_metrics[unit_one] )* value)/float(uni_metrics[unit_two]))
+        return((float(uni_metrics[unit_one] )* value)/float(uni_metrics[unit_two]))
     else:
         
         if unit_one == 'c':
@@ -38,9 +42,9 @@ def convert(exp):
             }
             if unit_two != 'f':
                 res = uni_for_c[unit_two] + value 
-               
+                return(res)
             else: 
-                print((value * (9/5))+32)
+                return((value * (9/5))+32)
         if unit_one == 'k':
             if value < 0 :
                 errors.below_zero()
@@ -49,9 +53,9 @@ def convert(exp):
                 'k':0
             }
             if unit_two != 'f':
-                print(uni_for_k[unit_two] + value)
+                return(uni_for_k[unit_two] + value)
             else: 
-                print(((value -273.15)* (9/5))+32)
+                return(((value -273.15)* (9/5))+32)
         if unit_one == 'f':
             
             pre_result  =  ( value  -32 ) * 5/9
@@ -62,9 +66,9 @@ def convert(exp):
                 
             
             if unit_two == 'k':
-                print(result_for_k)
+                return result_for_k
             if unit_two == 'c':
-                print(result_for_c)
+                return result_for_c
 
 
 
