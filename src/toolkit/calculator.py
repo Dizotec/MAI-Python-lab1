@@ -39,6 +39,7 @@ def calc(converted):
     with open('results.json','a',encoding='utf-8') as file:
         json.dump(expression_plus_result,file)
         file.write('\n')
+    
     return expression_plus_result
    
 

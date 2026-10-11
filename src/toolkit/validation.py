@@ -40,7 +40,7 @@ def valid(args):
     permitted.append(' ')
     for i in exp:
         if i not in permitted:
-            print(i)
+            
             errors.invalid_symbol()
     # проверка на деление на ноль 
     combs_with_div_by_zero = [str(i) +'/0' for i in range(1,10)]
@@ -50,4 +50,4 @@ def valid(args):
     
     
     
-    tokenization.get_tokens(exp)
+    return tokenization.get_tokens(exp)

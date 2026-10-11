@@ -26,4 +26,4 @@ def get_tokens(exp):
                 i += 1
             tokens.append(number)
     
-    converter_to_PPN.convert_to_RPN(tokens)
+    return converter_to_PPN.convert_to_RPN(tokens)

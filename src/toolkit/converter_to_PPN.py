@@ -32,5 +32,5 @@ def convert_to_RPN(tokens):
     while stack:
         converted.append(stack.pop())
    
-    calculator.calc(converted)
+    return calculator.calc(converted)
 
