@@ -1,4 +1,6 @@
-import sys 
+import sys
+
+
 def empty_exp():
         print('Empty Expression', file=sys.stderr)
         sys.exit(2)

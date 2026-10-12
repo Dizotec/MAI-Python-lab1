@@ -1,9 +1,9 @@
-import json 
-from collections import deque 
+import json
+from collections import deque
+from decimal import ROUND_HALF_UP, Decimal
 
-from toolkit import errors,expression,converter_to_PPN
+from toolkit import converter_to_rpn, errors, expression
 
-from decimal import Decimal,  ROUND_HALF_UP
 
 def calc(converted):
     stack = deque() 
@@ -11,7 +11,7 @@ def calc(converted):
         if i =='~':
             arg = float(stack.pop())
             stack.append(str(-arg))
-        elif i.isdigit() or converter_to_PPN.isfloat(i):
+        elif i.isdigit() or converter_to_rpn.isfloat(i):
             stack.append(i)
         elif i in '+-/*':
             try:

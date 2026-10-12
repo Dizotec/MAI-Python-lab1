@@ -1,5 +1,8 @@
-from collections import deque 
+from collections import deque
+
 from toolkit import calculator
+
+
 def isfloat(token):
     try:
         float(token)

@@ -1,4 +1,6 @@
-from toolkit import converter_to_PPN
+from toolkit import converter_to_rpn
+
+
 def get_tokens(exp):
     
     
@@ -26,4 +28,4 @@ def get_tokens(exp):
                 i += 1
             tokens.append(number)
     
-    return converter_to_PPN.convert_to_RPN(tokens)
+    return converter_to_rpn.convert_to_RPN(tokens)

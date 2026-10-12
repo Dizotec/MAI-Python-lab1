@@ -1,5 +1,6 @@
 import sys
-from toolkit import errors ,converter_to_PPN ,  tokenization
+
+from toolkit import errors, tokenization
 
 
 def valid(args):
