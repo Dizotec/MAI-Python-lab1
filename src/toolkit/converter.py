@@ -1,3 +1,5 @@
+import json
+
 from toolkit import errors
 
 
@@ -18,17 +20,9 @@ def convert(exp):
         pass
     else:
         errors.conversion_of_different_groups()
-    
-    uni_metrics = {
-        "mm" :  0.001,
-        "cm" : 0.01,
-        "m" : 1 ,
-        "km":1000,
-        'g':1,
-        'kg':1000
+    with open('units.json', 'r', encoding='utf-8') as file:
+        uni_metrics = json.load(file)
 
-
-    }
     if unit_one not in temperature_units and unit_two not in temperature_units:
 
         return((float(uni_metrics[unit_one] )* value)/float(uni_metrics[unit_two]))
