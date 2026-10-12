@@ -1,13 +1,12 @@
-from toolkit import errors 
-from toolkit import converter
-from toolkit import calculator
-from toolkit import tokenization
 import sys
+from toolkit import errors ,converter_to_PPN ,  tokenization
+
+
 def valid(args):
     if len(args) == 1:
             errors.empty_exp()
             sys.exit(2)
-    exp_args = args[1]
+    
     
     exp = args[1]
 
@@ -15,10 +14,10 @@ def valid(args):
     clean_exp = exp.replace(' ', '')
     prev = '+'
     for i in clean_exp:
-        if i in permitted and prev in permitted:
+        if i in permitted and prev in permitted and (not (i in ('+','-') and prev in ('*','/','+','-'))):
             # допустимо только если второй оператор — унарный '+' или '-'
-            if not (i in ('+','-') and prev in ('*','/','+','-')):
-                errors.double_operands()
+            
+            errors.double_operands()
         prev = i
     # проверка на пропущенный операнд 
     

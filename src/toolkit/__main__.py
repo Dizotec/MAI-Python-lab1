@@ -1,9 +1,6 @@
 import sys
-from toolkit import calculator
-from toolkit import converter
-from toolkit import errors
-from toolkit import validation
-from toolkit import expression 
+from toolkit import  converter, validation, expression
+
 def main():
 
     args = sys.argv[1:]  

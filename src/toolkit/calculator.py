@@ -1,12 +1,10 @@
+import json 
 from collections import deque 
 
-from toolkit import errors
-from toolkit import validation
-    
-from toolkit import expression
-from toolkit import converter_to_PPN
+from toolkit import errors,expression,converter_to_PPN
+
 from decimal import Decimal,  ROUND_HALF_UP
-import json 
+
 def calc(converted):
     stack = deque() 
     for i in converted:
