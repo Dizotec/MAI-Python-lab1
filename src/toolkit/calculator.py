@@ -6,7 +6,7 @@ from toolkit import converter_to_rpn, errors, expression
 
 
 # interprets symbols and counts
-def calc(converted):
+def calc(converted: list[str]) -> str:
     stack = deque() 
     for i in converted:
         if i =='~':

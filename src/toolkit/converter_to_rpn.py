@@ -4,14 +4,14 @@ from toolkit import calculator, errors
 
 
 # a helper function similar to `isdigit`
-def isfloat(token):
+def isfloat(token: str) -> bool:
     try:
         float(token)
         return True
     except ValueError:
         return False
 # RPN conveter
-def convert_to_RPN(tokens):
+def convert_to_RPN(tokens: list[str]) -> str:
     
     converted = []
     stack = deque()

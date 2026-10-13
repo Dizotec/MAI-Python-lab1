@@ -4,7 +4,7 @@ import os
 from toolkit import errors
 
 
-def convert(exp): 
+def convert(exp: list[str]) -> float:
     
     value = float(exp[1])
     unit_one = (exp[3]).lower()
