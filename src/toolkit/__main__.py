@@ -4,9 +4,9 @@ from toolkit import converter, expression, validation
 
 
 def main():
-
+    
     args = sys.argv[1:]  
-    if '-help' in args or not args:
+    if '--help' in args or not args:
         print("Usage guide:\n  python -m toolkit calc \"expression\"\n  python -m toolkit convert VALUE --from UNIT --to UNIT")
         sys.exit(0)
     if len(args)>=2:

@@ -1,15 +1,16 @@
 from toolkit import converter_to_rpn
 
 
+# tokenization
 def get_tokens(exp):
     
     
     tokens = [] 
     i = 0 
     while i < len(exp):
-        if exp[i] in '+-/*()' or exp[i] == ' ':
+        if exp[i] in '+-/*%()' or exp[i] == ' ':
             if exp[i] in '-+':
-                is_unary = (len(tokens) == 0 or tokens[-1] in '+-/*(')
+                is_unary = (len(tokens) == 0 or tokens[-1] in '+-/*(%')
                 if is_unary:
                     if exp[i] == '+':
                         i+=1

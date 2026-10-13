@@ -11,11 +11,11 @@ def valid(args):
     
     exp = args[1]
 
-    permitted = ['*','/','-','+','.'] 
+    permitted = ['*','/','-','+','.','%'] 
     clean_exp = exp.replace(' ', '')
     prev = '+'
     for i in clean_exp:
-        if i in permitted and prev in permitted and (not (i in ('+','-') and prev in ('*','/','+','-'))):
+        if i in permitted and prev in permitted and (not (i in ('+','-') and prev in ('*','/','+','-','%'))):
             # допустимо только если второй оператор — унарный '+' или '-'
             
             errors.double_operands()
@@ -45,6 +45,10 @@ def valid(args):
     # проверка на деление на ноль 
     combs_with_div_by_zero = [str(i) +'/0' for i in range(1,10)]
     for i in combs_with_div_by_zero:
+        if i in exp:
+            errors.division_by_zero()
+    combs_with_mod_by_zero_s = [str(i) +'%0' for i in range(1,10)]
+    for i in combs_with_mod_by_zero_s:
         if i in exp:
             errors.division_by_zero()
     

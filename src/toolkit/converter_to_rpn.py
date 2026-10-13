@@ -1,20 +1,21 @@
 from collections import deque
 
-from toolkit import calculator
+from toolkit import calculator, errors
 
 
+# a helper function similar to `isdigit`
 def isfloat(token):
     try:
         float(token)
         return True
     except ValueError:
         return False
-    
+# RPN conveter
 def convert_to_RPN(tokens):
     
     converted = []
     stack = deque()
-    priorities = {'(': 0, '+': 1, '-': 1, '*': 2, '/': 2,'~':3}
+    priorities = {'(': 0, '+': 1, '-': 1, '%':2 ,'*': 2, '/': 2,'~':3}
     for i in tokens:
     
         if i == ' ':
@@ -23,7 +24,7 @@ def convert_to_RPN(tokens):
             converted.append(i)
         elif i == '(':
             stack.append(i)
-        elif i in "+-/*~":
+        elif i in "+-/*~%":
             while stack and stack[-1] != '(' and priorities[stack[-1]] >= priorities[i]:
                 converted.append(stack.pop())
             stack.append(i)
@@ -31,7 +32,10 @@ def convert_to_RPN(tokens):
         elif i == ')':
             while stack and stack[-1] != '(':
                 converted.append(stack.pop())
-            stack.pop()
+            try:    
+                stack.pop()
+            except IndexError:
+                errors.extra_parenthesis()
     while stack:
         converted.append(stack.pop())
    

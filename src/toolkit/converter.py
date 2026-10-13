@@ -1,4 +1,5 @@
 import json
+import os
 
 from toolkit import errors
 
@@ -20,12 +21,19 @@ def convert(exp):
         pass
     else:
         errors.conversion_of_different_groups()
-    with open('units.json', 'r', encoding='utf-8') as file:
-        uni_metrics = json.load(file)
+    
+   
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    config_path = os.path.join(base_dir, '..', 'units.json')
 
+    with open(config_path, 'r', encoding='utf-8') as file:
+        uni_metrics = json.load(file)
+    # output of results for length and mass metrics
     if unit_one not in temperature_units and unit_two not in temperature_units:
 
         return((float(uni_metrics[unit_one] )* value)/float(uni_metrics[unit_two]))
+    # Outputting results for temperature metrics
     else:
         
         if unit_one == 'c':
